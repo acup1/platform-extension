@@ -1,0 +1,50 @@
+{
+	"manifest_version": 2,
+	"name": "school 21 platform avatars",
+	"version": "1.0.1",
+	"description": "Добавляет аватары пользователей из Rocket.Chat на платформу School 21. Делает профили, соревнования и ленту активности более персонализированными. Расшинение не собирает данные.",
+	"icons": {
+		"32": "icons/32.png",
+		"64": "icons/64.png",
+		"128": "icons/128.png"
+	},
+	"author": "acup",
+	"permissions": ["activeTab"],
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "georgiyegoriy@gmail.com",
+			"strict_min_version": "109.0",
+			"data_collection_permissions": {
+				"required": ["none"]
+			}
+		}
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://platform.21-school.ru/*"],
+			"js": ["js/self_avatar.js"],
+			"run_at": "document_end"
+		},
+		{
+			"matches": [
+				"https://platform.21-school.ru/my-profile",
+				"https://platform.21-school.ru/my-profile/*"
+			],
+			"js": ["js/my-profile.js"],
+			"run_at": "document_end"
+		},
+		{
+			"matches": ["https://platform.21-school.ru/profile/*"],
+			"js": ["js/profile.js"],
+			"run_at": "document_end"
+		},
+		{
+			"matches": [
+				"https://platform.21-school.ru/competition/*",
+				"https://platform.21-school.ru/project/*/about"
+			],
+			"js": ["js/competition.js"],
+			"run_at": "document_end"
+		}
+	]
+}
